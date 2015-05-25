@@ -1,0 +1,29 @@
+** Interface:
+
+control volume on the screen
+
+separate the agent control from the author control
+
+** Errors
+
+two windows - the time window stops the moment a new sound is selected
+from the new winodw.
+
+
+** Sounds
+
+Different sounds for the agent and the player
+
+Interface functions activated only after the sound is selected,
+so someone might be confused what to do,
+
+** Other things
+
+1) User score events versus agent score events, only based on the sound
+   events it is not possible to decipher how (but trivially, that can be
+   done by adding another field, but interestng)
+
+2) In the score event, sound events are ordered based on when they are
+   created, not when they are played
+
+3)

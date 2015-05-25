@@ -12,19 +12,18 @@
 
   :source-paths ["src" "target/classes"]
 
-  :clean-targets ["out/server/proj" "out/server/proj.js"]
+  :clean-targets ["www/appscripts/out/server/proj" "www/appscripts/out/server/proj.js"]
 
   :cljsbuild {
               :builds [{:id "server"
                         :source-paths ["src/server"]
                         :compiler {
                                    :main proj.core
-                                   :output-to "out/server/proj.js"
-                                   :output-dir "out/server"
+                                   :output-to "www/appscripts/out/server/proj.js"
+                                   :output-dir "www/appscripts/out/server"
                                    :optimizations :none
                                    :target :nodejs
                                    :cache-analysis true
                                    :source-map true}}
                        ]}
-
   )

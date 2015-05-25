@@ -1,0 +1,133 @@
+*
+{
+    padding: 0;
+    margin: 0;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+html, body
+{
+    height: 100%;
+    background-color:black;
+    color:white;
+
+}
+
+#wrap {
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+}
+#block0{
+    width: 100%;
+    background-color:pink;
+    height: 10%;
+}
+#block0a{
+        background-color: black;
+        width: 3%;
+        height: 100%; 
+        float: left; 
+        overflow: visible;
+}
+#block0b{
+        background-color: black;
+        width: 77%;
+        height: 100%; 
+        float: left; 
+        overflow: visible;
+}
+#block0c{
+        background-color: black;
+        width: 20%;
+        height: 100%; 
+        float: left; 
+        overflow: visible;
+}
+
+#block1 {
+    width: 100%;
+    height: 65%;
+    max-height: 65%;
+    background-color: red;
+}
+
+#block1a {
+        background-color: #4B0082;
+
+        width: 3%;
+        height: 100%; 
+
+        float: left; 
+        overflow: visible;
+
+    }
+#block1b {
+        background-color: black;
+        width: 77%;
+        height: 100%; 
+
+        float: left; 
+        overflow: visible;
+
+    }
+#block1c {
+        background-color: #4B0082;
+        width: 20%;
+        height: 100%; 
+
+        float: left; 
+        overflow: auto;
+
+    }
+
+
+
+#block3 {
+    background-color: green;
+    width: 100%;
+    height: 15%;
+    max-height: 15%;
+    overflow: visible;
+}
+
+#block3a {
+        background-color: black;
+        width: 3%;
+        height: 100%; 
+        float: left; 
+        overflow: visible;
+    }
+#block3b {
+        background-color: black;
+        width: 25%;
+        height: 100%; 
+        float: left; 
+        overflow: visible;
+    }
+#block3c {
+        background-color: black;
+        width: 52%;
+        height: 100%; 
+        float: left; 
+        overflow: visible;
+    }
+#block3d {
+        background-color: black;
+        width: 20%;
+        height: 100%; 
+        float: left; 
+        overflow: visible;
+        font-family: "Courier New", Courier, monospace;
+    }
+
+
+#footer{
+    background-color:black;
+    height: 10%;
+
+    font-family:Calibri ; font-size:10px;
+
+}

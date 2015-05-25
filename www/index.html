@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <link rel="stylesheet" type="text/css" href="css/blockstyle.css">
+     <link rel="stylesheet" type="text/css" href="css/appstyle.css">
+     <link rel="stylesheet" type="text/css" href="css/userConfig.css">
+     <!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1.0,user-scalable=no"> -->
+     <meta name="viewport" content="initial-scale=1,maximum-scale=1.0,minimum-scale=1.0">
+
+     <script src="appscripts/out/server/goog/base.js"> </script>
+     <script src="appscripts/out/server/cljs_deps.js"> </script>
+     <script>
+       console.log(goog.require('proj.core'));
+     </script>
+
+     <script type="text/javascript" data-main="appscripts/main.js" src="jslibs/require.js"></script>
+
+  </head>
+<body>
+
+<div id="wrap">
+
+	<div id="block0" >
+        <div id="block0a">
+        </div>
+        <div id="block0b">
+		  <h3 style="margin-bottom:0; ">"Anticipatory" Score</h3>
+        </div>
+        <div id="block0c" >
+                <span id="timeLabelDiv" >
+                    Time:
+                </span>
+                <span id="timeDisplayDiv" >
+                   Time
+                </span>
+        </div>
+	</div>
+
+    <div id="block1">
+        <div id="block1a">
+                        <canvas id="slidercanvas1"></canvas>
+        </div>
+        <div id="block1b">
+        	            <canvas id="score"></canvas>
+        </div>
+        <div id="block1c">
+                     <div >
+                        <div id="radioSelectDiv">
+                          <div align="center">
+                            Input Mode:
+                          </div>
+                           <div class="radioSelect">
+                                <input type="radio"  name="radioSelect" id="radioSpray" value="spray">Event Spray<br>
+                            </div>
+                            <div class="radioSelect">
+                                <input type="radio"  name="radioSelect"   id="radioContour" value="contour">Contour<br>
+                            </div>
+                            <div class="radioSelect">
+                                <input type="radio"  name="radioSelect" id="radioText" value="text">Text<br>
+                            </div>
+                            <div class="radioSelect">
+                                <input type="radio"  name="radioSelect" id="radioSelectDuplicate" value="select">Select/Duplicate<br>
+                            </div>
+                            <div class="radioSelect" hidden>
+                                <input type="radio" name="radioSelect"  id="radioPitch" value="pitch">Pitch<br>
+                            </div>
+
+                            <div class="radioSelect" hidden>
+                                <input type="radio"  name="radioSelect" id="radioRhythm" value="rhythm">Rhythm<br>
+                            </div>
+
+                           <div class="radioSelect" hidden>
+                                <input type="radio"  name="radioSelect" id="radioChord" value="chord">Chord<br>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- These three divs alternate visibility depending on the radio button selection above -->
+                    <div id="tabDiv">
+                          <div align="center">
+                            Options:
+                          </div>
+
+
+                        <div class="myTabs" id="pitchTab">
+                        </div>
+
+                         <div class="myTabs" id="rhythmTab">
+                        </div>
+
+                         <div class="myTabs" id="chordTab">
+                        </div>
+
+
+                        <div class="myTabs" id="contourTab">
+
+                        </div>
+
+                        <div class="myTabs" id="sprayTab">
+
+                        </div>
+
+                        <div class="myTabs" id="textTab">
+
+                        </div>
+
+                        <div class="myTabs" id="selectTab">
+
+                        </div>
+
+                     </div>
+
+
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div id="block3">
+        <div id="block3a"></div>
+        <div id="block3b">
+
+                <div id="soundToggleButtonDiv" >
+                            <input id="soundToggleButton" type="button" value="Sound Toggle">
+                </div>
+
+                <div id="timebuttondiv" >
+                            <input id="timeLockButton" type="button" value="Time Lock" >
+                </div>
+
+                <div id="yLockButtonDiv" >
+                            <input id="yLockButton" type="button" value="Y Lock" >
+                </div>
+
+
+        </div>
+        <div id="block3c">
+            <input id="timeLockSlider" type="range" name="points" step=".01" min="0.001" max="1">
+        </div>
+
+        <div id="block3d">
+           <div id="soundDiv"> Current Sound
+               <select id="newSoundSelector">
+               </select><br>
+               height <select id="param1Selector">
+               </select><br>
+               slider <select id="param2Selector">
+               </select>
+          </div>
+
+        </div>
+    </div>
+
+
+	<div id="footer" align="center">
+        <a href="http://anclab.org/software/software.html"> http://anclab.org/software/software.html</a> <br />
+	</div>
+</div>
+</body>
+</html>
