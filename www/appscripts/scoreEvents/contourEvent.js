@@ -10,32 +10,31 @@ define(
          var soundName;// name of sound this event will play
          var param1, param2; // the string names of the parameters of the sound associated with this event
 
-         var m_scoreEvent=genericScoreEvent("mouseContourGesture");
- 
+          var m_scoreEvent=genericScoreEvent("mouseContourGesture");
 
-            // args: 
+          // args:
             //  ctx - 2D canvax drawing contex
             //  time2Px = function for translating the time sampls on these objects to pixel for drawing
          m_scoreEvent.draw = function(ctx, time2Px, nowishP, now){
-               if (this.selectedP){
+             if (this.selectedP){
                   this.drawSelected(ctx,time2Px);
-               }
-               this.drawpolygon(ctx, time2Px, nowishP, now);
-               this.sonify(ctx, nowishP, now);
-            };
+             }
+             this.drawpolygon(ctx, time2Px, nowishP, now);
+             this.sonify(ctx, nowishP, now);
+         };
 
-         m_scoreEvent.drawpolygon = function(ctx, time2Px, nowishP, now){
-            var dispPx=time2Px(this.d[0][0]);
+          m_scoreEvent.drawpolygon = function(ctx, time2Px, nowishP, now){
+              var dispPx=time2Px(this.d[0][0]);
 
-            // Display the element
-            ctx.fillStyle = this.color;
-            ctx.fillText(this.s, dispPx, this.d[0][1]);
+              // Display the element
+              ctx.fillStyle = this.color;
+              ctx.fillText(this.s, dispPx, this.d[0][1]);
 
-            // The "dot" at the head of the displayed gesture
-            ctx.beginPath();
-            ctx.arc(dispPx,this.d[0][1],1,0,2*Math.PI);
-            ctx.closePath();
-            ctx.fill();
+              // The "dot" at the head of the displayed gesture
+              ctx.beginPath();
+              ctx.arc(dispPx,this.d[0][1],1,0,2*Math.PI);
+              ctx.closePath();
+              ctx.fill();
 
             // DRAW ONE BIG POLYGON
             // One line all the way to the end
@@ -47,18 +46,18 @@ define(
             for(var n=0;n<this.d.length;n++){
                ctx.lineTo(time2Px(this.d[n][0]), this.d[n][1]);
             }
-            // "turn around" the end
-            ctx.lineTo(time2Px(this.d[n-1][0]), this.d[n-1][1]-this.d[n-1][2]);
-            // go backwards at the line width
-            for(var n=this.d.length-1;n>=0; n--){
+              // "turn around" the end
+              ctx.lineTo(time2Px(this.d[n-1][0]), this.d[n-1][1]-this.d[n-1][2]);
+              // go backwards at the line width
+              for(var n=this.d.length-1;n>=0; n--){
                ctx.lineTo(time2Px(this.d[n][0]), this.d[n][1]-this.d[n][2]);
             }
             // close and fill the whole shape as one big plygon
             ctx.closePath();
-            ctx.stroke();  
+            ctx.stroke();
             ctx.globalAlpha = 0.25;
-            ctx.fill(); 
-            ctx.globalAlpha = 1;      
+            ctx.fill();
+            ctx.globalAlpha = 1;
          };
 
          m_scoreEvent.sonify =function(ctx, nowishP, now){
@@ -69,7 +68,7 @@ define(
                //console.log("contour start, get a new snd")
                this.snd=this.soundbank.getSnd(this.soundName);
                this.snd && this.snd.play();
-            } 
+            }
 
             for(var n=0;n<this.d.length;n++){
                // Send parameter updates on every frame, interpolating between the segment endpoints we are in
@@ -78,18 +77,20 @@ define(
 
                      if (this.param1 != "not used") {
                         // y0 + (x1-x0)(y-y0)/(x1-x0) for the height parameter
-                        tempy=this.d[n][1] + (now-this.d[n][0])*((this.d[n+1][1] -this.d[n][1])) / (this.d[n+1][0] -this.d[n][0]);
+                         tempy=this.d[n][1] + (now-this.d[n][0])*((this.d[n+1][1] -this.d[n][1])) / (this.d[n+1][0] -this.d[n][0]);
+                         //linearly interpolates to find the y value from the time and the slope values
+
                         this.snd.setParamNorm(this.param1, 1-tempy/ctx.canvas.height);
                      }
 
                      if (this.param2 != "not used") {
-                        // y0 + (x1-x0)(y-y0)/(x1-x0) for the slider val parameter 
+                        // y0 + (x1-x0)(y-y0)/(x1-x0) for the slider val parameter
                           tempy=this.d[n][2] + (now-this.d[n][0])*((this.d[n+1][2] -this.d[n][2])) / (this.d[n+1][0] -this.d[n][0]);
 
                         //this.snd.setParamNorm(this.param2, kScaleMI*(1-tempy/config.maxContourWidth));
                         //console.log("set param norm " + tempy/config.maxContourWidth);
                         this.snd.setParamNorm(this.param2, tempy/config.maxContourWidth);
-                     } 
+                     }
                   }
                }
             }
@@ -101,7 +102,7 @@ define(
                } else {
                   this.snd && this.snd.release();
                }
-               this.snd && this.soundbank.releaseSnd(this.snd); 
+               this.snd && this.soundbank.releaseSnd(this.snd);
             }
          };
 
@@ -125,7 +126,7 @@ define(
             }
             return this.selectedP;
          } // touchedP
-            
+
 
          m_scoreEvent.getKeyFields= function(arg){
             return {

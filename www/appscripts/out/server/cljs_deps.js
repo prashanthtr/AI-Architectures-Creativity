@@ -5,5 +5,5 @@ goog.addDependency("../clojure/browser/net.js", ['clojure.browser.net'], ['goog.
 goog.addDependency("../cljs/repl.js", ['cljs.repl'], ['cljs.core']);
 goog.addDependency("../clojure/browser/repl.js", ['clojure.browser.repl'], ['goog.dom', 'cljs.core', 'clojure.browser.net', 'goog.labs.userAgent.browser', 'cljs.repl', 'clojure.browser.event']);
 goog.addDependency("../proj/core.js", ['proj.core'], ['clojure.browser.repl', 'cljs.core']);
-goog.addDependency("../DAF0E33.js", ['cljs.nodejs'], ['cljs.core']);
+goog.addDependency("../92EA5BE.js", ['cljs.nodejs'], ['cljs.core']);
 goog.addDependency("../BCE03FE.js", ['cljs.nodejscli'], ['cljs.core', 'cljs.nodejs']);

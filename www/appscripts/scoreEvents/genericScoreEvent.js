@@ -2,7 +2,7 @@ define(
    [],
    function () {
       return function (i_type){
- 
+
 
          var genEvent={
             type: i_type || null,            // String identifying gesture type
@@ -13,23 +13,23 @@ define(
             e: -999999999999999999999999999, // end time for this gesture
             color: "FFFFFF",
             head: "rectangle",                // "diamond", "circle", "rectangle"
-            tail: true,                      // boolean for now     
-            drawID: false, 
-            font: "12px Arial",     
+            tail: true,                      // boolean for now
+            drawID: false,
+            font: "12px Arial",
             selectedP: false,
 
 
-            duplicate: function(tshift, yshift, newEvent){
+             duplicate: function(tshift, yshift, newEvent){
 
-               // it would be nice not to have to hardcode this list................
-               newEvent.type=this.type;
-               newEvent.s=this.s;
-               newEvent.color=this.color;
-               newEvent.head=this.head;
-               newEvent.tail=this.tail;
-               newEvent.font=this.font;
-               newEvent.text=this.text;
-               newEvent.soundbank=this.soundbank;
+                 // it would be nice not to have to hardcode this list................
+                 newEvent.type=this.type;
+                 newEvent.s=this.s;
+                 newEvent.color=this.color;
+                 newEvent.head=this.head;
+                 newEvent.tail=this.tail;
+                 newEvent.font=this.font;
+                 newEvent.text=this.text;
+                 newEvent.soundbank=this.soundbank;
 
                if (this.soundName) newEvent.soundName=this.soundName;
                if (this.param1) newEvent.param1=this.param1;
@@ -46,7 +46,7 @@ define(
             },
 
             updateMinTime: function(i_arg){
-               if (i_arg){
+                if (i_arg){
                   genEvent.b=Math.min(i_arg, genEvent.b);
                } else{
                   for (var i=0;i<genEvent.d.length;i++)
@@ -64,7 +64,7 @@ define(
                      genEvent.e=Math.max(genEvent.e, genEvent.d[i][0]);
                }
                return genEvent.e;
-            }, 
+            },
 
             draw: function(ctx, time2Px, nowishP, now){
                //var dispPx=time2Px(this.d[0][0]);
@@ -108,7 +108,7 @@ define(
                   ctx.fill();
                }
 
-               ctx.globalAlpha = 1;      
+               ctx.globalAlpha = 1;
             },
 
             select: function(arg){
