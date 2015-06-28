@@ -119,7 +119,7 @@ define(
             function timeshift(arr){
 
                 for(i=0; i< arr.length; i++){
-                    arr[i][0] = tso + 10000*(1 + Math.random());
+                    arr[i][0] = tso + Math.abs(tso - arr[i][0]) + 1000*6;
                 }
                 return arr;
             }
@@ -167,8 +167,11 @@ define(
                 //m_gesture.d = inter_cons(proj.core.tranpose(most_recent_gesture.d,tso), []),[];
                 //m_gesture.d = inter_cons(proj.core.rule_inverse(most_recent_gesture.d,tso), []);
                 //m_gesture.d = inter_cons(proj.core.rule_harmonize(most_recent_gesture.d,tso),[]);
-                m_gesture.d = proj.core.combinational_parameters(score_data);
-                //m_gesture.d = m_gesture.d.map(inter_vector2);
+                //m_gesture.d = proj.core.combinational_parameters(score_data);
+                //m_gesture.d = proj.core.knobbification(score_data);
+                //m_gesture.d = proj.core.combinational_transformation(score_data);
+                //m_gesture.d = proj.core.analogy_stub(score_data);
+                m_gesture.d = proj.core.self_watching_stub(score_data);
                 debugger;
 
                 m_gesture.d = inter_vector(m_gesture.d);
