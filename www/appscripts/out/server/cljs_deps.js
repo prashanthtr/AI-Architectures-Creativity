@@ -4,6 +4,12 @@ goog.addDependency("../clojure/browser/event.js", ['clojure.browser.event'], ['c
 goog.addDependency("../clojure/browser/net.js", ['clojure.browser.net'], ['goog.net.xpc.CfgFields', 'goog.net.XhrIo', 'goog.json', 'goog.Uri', 'cljs.core', 'goog.net.EventType', 'goog.net.xpc.CrossPageChannel', 'goog.net.WebSocket', 'clojure.browser.event']);
 goog.addDependency("../cljs/repl.js", ['cljs.repl'], ['cljs.core']);
 goog.addDependency("../clojure/browser/repl.js", ['clojure.browser.repl'], ['goog.dom', 'cljs.core', 'clojure.browser.net', 'goog.labs.userAgent.browser', 'cljs.repl', 'clojure.browser.event']);
-goog.addDependency("../proj/core.js", ['proj.core'], ['clojure.browser.repl', 'cljs.core']);
-goog.addDependency("../3FCA235.js", ['cljs.nodejs'], ['cljs.core']);
+goog.addDependency("../server/utilities.js", ['server.utilities'], ['cljs.core']);
+goog.addDependency("../server/AIagent/analogy.js", ['server.AIagent.analogy'], ['cljs.core', 'server.utilities']);
+goog.addDependency("../server/AIagent/combination.js", ['server.AIagent.combination'], ['cljs.core', 'server.utilities']);
+goog.addDependency("../server/AIagent/knobbification.js", ['server.AIagent.knobbification'], ['cljs.core', 'server.utilities']);
+goog.addDependency("../server/AIagent/self_watching.js", ['server.AIagent.self_watching'], ['cljs.core', 'server.AIagent.analogy', 'server.utilities']);
+goog.addDependency("../server/AIagent/subsumption.js", ['server.AIagent.subsumption'], ['cljs.core', 'server.utilities']);
+goog.addDependency("../proj/core.js", ['proj.core'], ['clojure.browser.repl', 'cljs.core', 'server.AIagent.analogy', 'server.AIagent.combination', 'server.AIagent.knobbification', 'server.AIagent.self_watching', 'server.AIagent.subsumption', 'server.utilities']);
+goog.addDependency("../D1EE461.js", ['cljs.nodejs'], ['cljs.core']);
 goog.addDependency("../BCE03FE.js", ['cljs.nodejscli'], ['cljs.core', 'cljs.nodejs']);

@@ -72,7 +72,6 @@ define(
                 return arr;
             }
 
-
             // CREATE THE GESTURE [[t,y,z],[t,y,z],[t,y,z], ...]
             // interpret lists
             // obj here is obj.s
@@ -114,8 +113,9 @@ define(
                 return obj.tail;
             }
 
-
-
+            //these two functions can be in clojure itself,
+            // but additionally, the API will need tso as well
+            // during each call to the function
             function timeshift(arr){
 
                 for(i=0; i< arr.length; i++){
@@ -156,6 +156,8 @@ define(
             //     m_gesture.d = order_arr(gestured);
             // }
 
+            //similarly, these random functions can also be included inside
+            // the functional responses of each system.
 
             if( score_data.length == 0 || score_data.length == 1){
                 console.log("Agent is random");
@@ -167,12 +169,12 @@ define(
                 //m_gesture.d = inter_cons(proj.core.tranpose(most_recent_gesture.d,tso), []),[];
                 //m_gesture.d = inter_cons(proj.core.rule_inverse(most_recent_gesture.d,tso), []);
                 //m_gesture.d = inter_cons(proj.core.rule_harmonize(most_recent_gesture.d,tso),[]);
-                //m_gesture.d = proj.core.combinational_parameters(score_data);
-                //m_gesture.d = proj.core.knobbification(score_data);
-                //m_gesture.d = proj.core.combinational_transformation(score_data);
-                //m_gesture.d = proj.core.analogy_stub(score_data);
-                m_gesture.d = proj.core.self_watching_stub(score_data);
                 debugger;
+                //m_gesture.d = proj.core.combinationalAI(score_data);
+                //m_gesture.d = proj.core.knobbificationAI(score_data);
+                //m_gesture.d = proj.core.combinational_transformation(score_data);
+                //m_gesture.d = proj.core.analogyAI(score_data);
+                m_gesture.d = proj.core.selfwatchingAI(score_data);
 
                 m_gesture.d = inter_vector(m_gesture.d);
                 m_gesture.d = timeshift(m_gesture.d);

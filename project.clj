@@ -16,7 +16,7 @@
 
   :cljsbuild {
               :builds [{:id "server"
-                        :source-paths ["src/server"]
+                        :source-paths ["src/server/proj"]
                         :compiler {
                                    :main proj.core
                                    :output-to "www/appscripts/out/server/proj.js"
