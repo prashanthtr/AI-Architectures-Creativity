@@ -18,7 +18,8 @@ require(
 	userConfig.report(function(){
 	    if (userConfig.player === "agent"){
 		console.log("you will play with (or as) an agent");
-		m_agent=agentPlayer();
+                debugger;
+		m_agent=agentPlayer(["turntaking","direct","retrograde"]);
 	    }
 
 	    // unsubscribe to previous room, join new room

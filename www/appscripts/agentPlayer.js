@@ -36,70 +36,11 @@ define(
         function makeGesture(tso){
             var m_gesture=generalScoreEvent("mouseContourGesture");
 
-            /*
-            // get the starting and ending time value
-            m_g_start_t = 2000+10000*Math.random(); // from 10 to 12 seconds into the future
-            m_g_end_t = m_g_start_t + k_min_d + (k_max_d-k_min_d)*Math.random();
-            // get the starting and ending y value
-            m_g_start_y = k_max_y*Math.random();
-            m_g_end_y = k_max_y*Math.random();
-
-            //CREATE THE GESTURE [[t,y,z],[t,y,z],[t,y,z], ...]
-            m_gesture.d=[[tso+m_g_start_t,m_g_start_y,0],[tso+(m_g_start_t+m_g_end_t)/2,(m_g_start_y+m_g_end_y)/2,15],[tso+m_g_end_t,m_g_end_y,0]]; //, ];
-
-             // third param is the same as provided by the slider on the
-             // interface
-             */
-
             m_g_start_t = proj.core.start_t; // from 10 to 12 seconds into the future
             m_g_end_t = proj.core.end_t;
             // get the starting and ending y value
             m_g_start_y = proj.core.start_y; //; k_max_y*Math.random();
             m_g_end_y = proj.core.end_y; //k_max_y*Math.random();
-
-            // cons objec is organized as:
-
-            function inter_cons(a,arr){
-                if(a.s.rest.s == null){ //terminating
-                    arr.push(a.s.first);
-                    return arr;
-                }
-                else
-                {
-                    arr.push(a.s.first);
-                    inter_cons(a.s.rest,arr);
-                }
-                return arr;
-            }
-
-            // CREATE THE GESTURE [[t,y,z],[t,y,z],[t,y,z], ...]
-            // interpret lists
-            // obj here is obj.s
-            // function inter_lists(obj, rest_obj, arr, new_arr){
-            //     //console.log(arr[arr.length - 1]);
-            //     if (rest_obj.rest == null){
-            //         if (obj.rest == null) {
-            //             //console.log("going to return");
-            //             arr.push(rest_obj.first);
-            //             new_arr.push(arr);
-            //             return new_arr;
-            //         }
-            //         else {
-            //             arr.push(rest_obj.first);
-            //             new_arr.push(arr);
-            //             f(obj.rest.s,obj.rest.s,[],new_arr);}
-            //     }
-            //     else{
-            //         if (typeof (rest_obj.first) == "object") {
-            //             //console.log("print going in");
-            //             arr.push(rest_obj.first);
-            //             f(obj,rest_obj.rest,arr,new_arr);
-            //         }
-            //         else { f(obj,rest_obj.s,arr,new_arr); }
-            //     }
-            //     return new_arr;
-            // }
-
 
             function inter_vector(obj){
                 var new_arr = [];
@@ -109,80 +50,33 @@ define(
                 return new_arr;
             }
 
-            function inter_vector2(obj){
-                return obj.tail;
-            }
-
-            //these two functions can be in clojure itself,
-            // but additionally, the API will need tso as well
-            // during each call to the function
-            function timeshift(arr){
-
-                for(i=0; i< arr.length; i++){
-                    arr[i][0] = tso + Math.abs(tso - arr[i][0]) + 1000*6;
-                }
-                return arr;
-            }
-
-            //2d sort
-            function order_arr (arr){
-                for(i=0; i < arr.length; i++){
-                    for(j=0; j< arr.length; j++){
-                        if( arr[i][0] < arr[j][0] ){
-                            temp = arr[i];
-                            arr[i] = arr[j];
-                            arr[j] = temp;
-                        }
-                    }
-                }
-                return arr;
-            }
-
             var score_data = [];
             for ( i =0; i < update_score.length; i++) score_data.push(update_score[i].d);
 
-            // if( score_data.length == 0){
-            //     console.log("Agent is random");
-            //     m_gesture.d = inter_vector(proj.core.d(tso),[]);
-            // }
-            // else{
-            //     console.log("combinational creativity")
-            //     //update score was updated in the previous tick
-            //     var most_recent_gesture = update_score[update_score.length-1];
-            //     // okat this a reference, so any changes will reflect
-            //     var gestured = inter_cons(proj.core.api_combinational(score_data,most_recent_gesture.d,tso), []);
-            //     gestured = timeshift(gestured);
-            //     console.log("Gesture combinational is" + gestured);
-            //     m_gesture.d = order_arr(gestured);
-            // }
+            //m_gesture.d = proj.core.combinationalAI(score_data,tso);
+            //m_gesture.d = proj.core.knobbificationAI(score_data,tso);
+            //m_gesture.d = proj.core.combinational_transformation(score_data,tso);
+            //m_gesture.d = proj.core.selfwatchingAI(score_data,tso);
+            //m_gesture.d = proj.core.randomGest(tso);
 
-            //similarly, these random functions can also be included inside
-            // the functional responses of each system.
+            //m_gesture.d = proj.core.directComm(score_data,tso);
+            //m_gesture.d = proj.core.indirectComm(score_data,tso);
 
-            if( score_data.length == 0 || score_data.length == 1){
-                console.log("Agent is random");
-                m_gesture.d = inter_vector(proj.core.d(tso));
+            //small function to convert score data to integers
+            debugger;
+            var sc_data;
+            if( score_data.length != 0){
+                sc_data = [score_data[score_data.length-1].map( function (f) { f[1] = parseInt(f[1]); return f;})[0]];
             }
-            else{
-                var most_recent_gesture = update_score[update_score.length-1];
-                //m_gesture.d = inter_cons(proj.core.simple_repeat(most_recent_gesture.d,tso), []),[];
-                //m_gesture.d = inter_cons(proj.core.tranpose(most_recent_gesture.d,tso), []),[];
-                //m_gesture.d = inter_cons(proj.core.rule_inverse(most_recent_gesture.d,tso), []);
-                //m_gesture.d = inter_cons(proj.core.rule_harmonize(most_recent_gesture.d,tso),[]);
-                debugger;
-                //m_gesture.d = proj.core.combinationalAI(score_data);
-                //m_gesture.d = proj.core.knobbificationAI(score_data);
-                //m_gesture.d = proj.core.combinational_transformation(score_data);
-                //m_gesture.d = proj.core.analogyAI(score_data);
-                m_gesture.d = proj.core.selfwatchingAI(score_data);
+            // doing this to convert any floats to integers
+            score_data[score_data.length-1] = sc_data;
 
-                m_gesture.d = inter_vector(m_gesture.d);
-                m_gesture.d = timeshift(m_gesture.d);
-                //m_gesture.d = order_arr(m_gesture.d);
+            m_gesture.d = proj.core.enactive(score_data,tso);
+            //m_gesture.d = [m_gesture.d.tail];
+            m_gesture.d = inter_vector(m_gesture.d);
 
-            }
+            //m_gesture.d = timeshift(m_gesture.d);
             console.log("Gesture array is", m_gesture.d);
-            //[[tso+m_g_start_t,m_g_start_y,0],[tso+(m_g_start_t+m_g_end_t)/2,(m_g_start_y+m_g_end_y)/2,15],[tso+m_g_end_t,m_g_end_y,0]]; //, ];
 
             //fuunction that interpretst the cljs object into js arrays
 
@@ -190,7 +84,7 @@ define(
             m_gesture.updateMaxTime();
             m_gesture.updateMinTime();
 
-            m_gesture.s=0;//  myID;
+            m_gesture.s="A";//  myID is 0;
             m_gesture.color="#00FFF0";
 
             m_gesture.soundbank=soundbank;
@@ -207,36 +101,124 @@ define(
             return m_gesture;
         }
 
-        return function (){
+        var coImprovModel = (function (my){
+            var my = {};
+            return function(args){
+                my.interaction = args[0];
+                my.communication = args[1];
+                my.aesthetics = args[2];
+                return my;
+            }
+
+        })(coImprovModel);
+
+        function turntaking (tso,scoreEvents){
+
+            update_score = scoreEvents;
+            console.log("sound event", scoreEvents);
+            if (! this.soundSelect) return;  // don't make a gesture if no sound models have been selected yet.
+
+            if( scoreEvents.length == 0 ){
+                //make the first move if user is not responding
+                scoreEvents.push(makeGesture(tso));
+                this.clockTimeOfLastAction = tso;
+            }
+            else{
+                //don't do consecutive gestures
+                if( scoreEvents[scoreEvents.length-1].s == "A"  ){
+                    this.clockTimeOfLastAction = tso;
+
+                }
+                else{
+                    //In turn taking, system produces its response 3 seconds
+                    //after the user plays.
+                    if( (tso - this.clockTimeOfLastAction) > this.actInterval ){
+                        scoreEvents.push(makeGesture(tso));
+                        this.clockTimeOfLastAction = tso;
+                    }
+                }
+            }
+            return;
+        }
+
+        //var clockTimeOfLastAction=2000;
+
+        return function (args){
 
             var agent={};
 
-            var m_actInterval=4000;  // make a new gester this often
-            var clockTimeOfLastAction=2000;
+            agent.actInterval=3000;  // make a new gester this often
+            agent.clockTimeOfLastAction=2000;
+            agent.soundSelect = null;
 
-            agent.tick=function(tso, scoreEvents){
+            agent.coImprovModel = coImprovModel(args);
 
-                update_score = scoreEvents;
-                console.log("sound event", scoreEvents);
-                if (! m_soundSelector) return;  // don't make a gesture if no sound models have been selected yet.
-                if ((tso-clockTimeOfLastAction) > m_actInterval){
-                    console.log("doing something at time " + tso);
-                    scoreEvents.push(makeGesture(tso));
-                    clockTimeOfLastAction = tso;
-                }
-                return;
-            }
+            //calls the corresponding interaction model of co-improv
+            agent.tick= eval(agent.coImprovModel.interaction);
 
+                // function(tso, scoreEvents){
+
+                // this.interaction(tso,scoreEvents);
+
+                // update_score = scoreEvents;
+                // console.log("sound event", scoreEvents);
+                // if (! m_soundSelector) return;  // don't make a gesture if no sound models have been selected yet.
+                // // if ((tso-this.clockTimeOfLastAction) > agent.actInterval){
+                // //     console.log("doing something at time " + tso);
+                // //     console.log("actinterval is" + this.actInterval + "clocktime time of last action is" + this.clockTimeOfLastAction);
+
+                // //     debugger;
+                // //     if( scoreEvents.length == 0 ){
+                // //         scoreEvents.push(makeGesture(tso));
+                // //         this.clockTimeOfLastAction = tso;
+                // //     }
+                // //     if( scoreEvents[scoreEvents.length-1].s == "A"  ){
+
+                // //         return;
+                // //     }
+                // //     else{
+                // //         scoreEvents.push(makeGesture(tso));
+                // //         this.clockTimeOfLastAction = tso;
+                // //     }
+
+                // // }
+
+                // //only turn taking, there is not time involved here.
+
+                // if( scoreEvents.length == 0 ){
+                //     scoreEvents.push(makeGesture(tso));
+                //     this.clockTimeOfLastAction = tso;
+                //     return;
+                //     //make the first move if user is not responding
+                // }
+                // if( scoreEvents[scoreEvents.length-1].s == "A"  ){
+                //     this.clockTimeOfLastAction = tso;
+                //     return; //don't do consecutive gestures
+                // }
+                // else{
+                //     if( (tso - this.clockTimeOfLastAction) > this.actInterval ){
+                //         scoreEvents.push(makeGesture(tso));
+                //         this.clockTimeOfLastAction = tso;
+                //     }
+                //     else{
+                //         return;
+                //     }
+                // }
+                // return;
+            // };
+
+            //not sure why this reset function is needed since clocktimeoflastaction is always initialized during the callback
             agent.reset=function(){
-                clockTimeOfLastAction=0;
+                this.clockTimeOfLastAction=0;
             }
 
 
             agent.setSoundSelector = function(s){
                 m_soundSelector=s;
+                this.soundSelect = s;
             }
 
             return agent;
-        }
+        };
     }
 );
