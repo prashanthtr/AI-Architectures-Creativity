@@ -1,4 +1,4 @@
-# proj
+# Project
 
 Experiments with AI architectures for creativity.
 
