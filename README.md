@@ -1,10 +1,11 @@
 # proj
 
-FIXME: Write a one-line description of your library/project.
+Experiments with AI architectures for creativity.
 
 ## Overview
 
-FIXME: Write a paragraph about the library/project and highlight its goals.
+Test the implementation of different creativity models through AI architectures.
+Creativity models include combinatorial creativity, knobbification, and subsumption architecture.
 
 ## Setup
 
